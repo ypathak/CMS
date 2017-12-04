@@ -18,7 +18,7 @@ import javax.persistence.Table;
 public class Role extends AbstractEntity{
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long roleid;
 
