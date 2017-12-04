@@ -14,7 +14,7 @@
 		<mysql.connector.version>6.0.6</mysql.connector.version>
 	</properties>
 
-	<dependencies>
+	<dependencies> 
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
