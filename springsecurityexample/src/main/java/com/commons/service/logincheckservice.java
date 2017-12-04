@@ -25,9 +25,11 @@ public class logincheckservice  implements UserDetailsService {
 		// TODO Auto-generated method stub
 		User user=logincheck.findByUsername(uname);
 		Set<GrantedAuthority> grantedAuthorities=new HashSet<GrantedAuthority>();
-	     Role role = user.getRoles();	   
-	     
-	     grantedAuthorities.add(new SimpleGrantedAuthority(role.getRole()));
+	     Set<Role> role = user.getRoles();	   
+	     for(Role role2:role){
+	    	 grantedAuthorities.add(new SimpleGrantedAuthority(role2.getRole()));
+	     }
+	    
 	     
 	     return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities);
 	  

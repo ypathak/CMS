@@ -20,12 +20,12 @@ public class redirectpageaccordingtorole implements AuthenticationSuccessHandler
 			throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		Set<String> roles=AuthorityUtils.authorityListToSet(authentication.getAuthorities());
-		if(roles.contains("ROLE_USER")){
+		if(roles.contains("USER")){
 			response.sendRedirect("hello");
-		}else if(roles.contains("ROLE_ADMIN")){
-			response.sendRedirect("admin.jsp");
+		}else if(roles.contains("ADMIN")){
+			response.sendRedirect("admin");
 		}else{
-			response.sendRedirect("dba.jsp");
+			response.sendRedirect("superadmin/superadmin");
 		}
 	}
 

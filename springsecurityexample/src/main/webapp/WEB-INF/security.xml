@@ -4,23 +4,22 @@ xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.
 xsi:schemaLocation="http://www.springframework.org/schema/beans 
                 http://www.springframework.org/schema/beans/spring-beans.xsd
                 http://www.springframework.org/schema/security 
-                http://www.springframework.org/schema/security/spring-security-3.1.xsd"
+                http://www.springframework.org/schema/security/spring-security.xsd"
                 xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx">
 
 
 
 
 	<http auto-config="true" use-expressions="true">
-	   <intercept-url pattern="/hello" access="hasRole('ROLE_USER')"/>
-	   <intercept-url pattern="/admin/*" access="permitAll"/>
-	   
+<headers/>
+	   <intercept-url pattern="/hello" access="hasRole('USER')"/>
+	     <intercept-url pattern="/superadmin/*" access="hasRole('SUPER_ADMIN')"/>
 
 		<form-login login-page="/" login-processing-url="/loginurl"
 			username-parameter="username" password-parameter="password"
 			authentication-failure-url="/loginpage?error" authentication-success-handler-ref="successhandler" />
 
-		<logout logout-success-url="/loginpage?logout" logout-url="/logout" />
-
+		<logout logout-success-url="/loginpage?logout" logout-url="/logoutpage" delete-cookies="JSESSIONID" />
 	</http>
 	<authentication-manager>
 		<authentication-provider user-service-ref="UserDetailsService">
@@ -34,4 +33,7 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 	<beans:bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
 		<beans:constructor-arg name="strength" value="11" />
 	</beans:bean>
+	
+	
+	
 </beans:beans>

@@ -24,8 +24,8 @@ public class registerserviceimp implements registerservice{
 		// TODO Auto-generated method stub
 		user.setPassword(bcry.encode(user.getPassword()));
 	     Role roles=new Role();
-	     roles.setRole("ROLE_USER");
-		user.setRoles(roles);
+	     roles.setRole("USER");
+		/*user.setRoles(roles);*/
         user.setStatus(true);
 		registerdao.sasveuserdao(user);
 		
@@ -37,8 +37,8 @@ public class registerserviceimp implements registerservice{
 		// TODO Auto-generated method stub
 		user.setPassword(bcry.encode(user.getPassword()));
 	     Role roles=new Role();
-	     roles.setRole("ROLE_ADMIN");
-		user.setRoles(roles);
+	     roles.setRole("ADMIN");
+	/*	user.setRoles(roles);*/
        user.setStatus(true);
 		registerdao.sasveuserdao(user);
 	}

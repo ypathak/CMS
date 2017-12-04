@@ -25,6 +25,7 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+
 	<filter>
  <filter-name>springSecurityFilterChain</filter-name>
 <filter-class>
@@ -35,5 +36,11 @@ org.springframework.web.filter.DelegatingFilterProxy
 <filter-name>springSecurityFilterChain</filter-name>
 <url-pattern>/*</url-pattern>
 </filter-mapping>
-	
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.css</url-pattern>
+        <url-pattern>*.js</url-pattern> 	
+        <url-pattern>*.jpg</url-pattern>
+         <url-pattern>*.png</url-pattern>
+	</servlet-mapping>
 </web-app>

@@ -1,5 +1,7 @@
 package com.commons.Bean;
 
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -35,7 +37,7 @@ public class User {
 	private boolean status;
 	
 	
-	private Role roles;
+	private Set<Role> roles;
 
 	@Id
 	@GeneratedValue
@@ -99,14 +101,16 @@ public class User {
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
-	@OneToOne(cascade=CascadeType.ALL)
+
+	
+	@ManyToMany(cascade=CascadeType.ALL)
 	@JoinTable(name="userroles",joinColumns={@JoinColumn(name="Userid")},
 	inverseJoinColumns={@JoinColumn(name="userrole_id")})
-	public Role getRoles() {
+	public Set<Role> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(Role roles) {
+	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
 
