@@ -6,7 +6,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     
 <header class="main-header">
-<c:url var="loginurl" value="/logoutpage"></c:url>
+<c:url var="logout" value="/logout"></c:url>
 <sec:authentication property="principal.username" var="uname" />
     <!-- Logo -->
     <a href="index2.html" class="logo">
@@ -258,7 +258,7 @@
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="${loginurl}" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="${logout}" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>

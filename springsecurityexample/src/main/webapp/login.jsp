@@ -43,8 +43,8 @@
 		</div>
 
 		<div class="login-box-body">
-			<c:url var="loginurl" value="/loginurl"></c:url>
-			<form action="${loginurl}" method="post">
+			<c:url var="auth" value="/auth"></c:url>
+			<form action="${auth}" method="post">
 
 				<c:if test="${param.error != null}">
 				

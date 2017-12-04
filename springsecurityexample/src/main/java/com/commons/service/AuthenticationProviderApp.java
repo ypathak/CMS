@@ -3,6 +3,8 @@ package com.commons.service;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -11,29 +13,30 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.commons.Bean.Role;
-import com.commons.Bean.User;
-import com.commons.repository.logincheck;;
+import com.commons.entity.Role;
+import com.commons.entity.User;
+import com.commons.repository.UserDao;
 @Service("UserDetailsService")
-public class logincheckservice  implements UserDetailsService {
-
+@Transactional
+public class AuthenticationProviderApp  implements UserDetailsService {
 	@Autowired
-    private logincheck logincheck;
-	
+	private UserDao userDao;
+
 	@Override
 	public UserDetails loadUserByUsername(String uname) throws UsernameNotFoundException {
-		// TODO Auto-generated method stub
-		User user=logincheck.findByUsername(uname);
+		User user = null;
+		try {
+			user = userDao.findByUserName(uname);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new UsernameNotFoundException("Invalid User");
+		}
 		Set<GrantedAuthority> grantedAuthorities=new HashSet<GrantedAuthority>();
-	     Set<Role> role = user.getRoles();	   
-	     for(Role role2:role){
-	    	 grantedAuthorities.add(new SimpleGrantedAuthority(role2.getRole()));
-	     }
-	    
-	     
-	     return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities);
-	  
-		
+		Set<Role> role = user.getRoles();	   
+		for(Role role2:role){
+			grantedAuthorities.add(new SimpleGrantedAuthority(role2.getRole()));
+		}
+		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities);
 	}
-
 }
