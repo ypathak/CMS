@@ -1,25 +1,25 @@
 package com.commons.repository;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.List;
 
-import org.hibernate.Query;
 
-public interface GenericDAO<T, ID extends Serializable> {
+public interface GenericDAO<T, PK extends Serializable> {
 
-	public void save(T entity);
+	T save(T t);
 
-	public void merge(T entity);
+	void merge(T t);
 
-	public void delete(T entity);
+	void delete(T t);
 
-	public List<T> findMany(Query query);
+	void delete(PK pk);
 
-	public T findOne(Query query);
+	T findOne(PK pk);
 
-	public List<T> findAll(Class<T> clazz);
+	List<T>findAll();
 
-	public T findByID(Class<T> clazz, BigDecimal id);
+	Long count();
+
+	Class<T>getType();
 
 }

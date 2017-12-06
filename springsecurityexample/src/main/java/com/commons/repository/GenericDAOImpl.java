@@ -1,63 +1,74 @@
 package com.commons.repository;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.List;
 
-import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import com.commons.utils.HibernateUtil;
+public abstract class GenericDAOImpl<T, PK extends Serializable> implements	GenericDAO<T, PK> {
 
-public abstract class GenericDAOImpl<T, ID extends Serializable> implements GenericDAO<T, ID> {
-	protected Session getSession() {
-		return HibernateUtil.getSession();
+	@Autowired
+	private SessionFactory sessionFactory;
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
 	}
 
-	public void save(T entity) {
-		Session hibernateSession = this.getSession();
-		hibernateSession.saveOrUpdate(entity);
+	public Session getSession() {
+		return sessionFactory.getCurrentSession();
 	}
 
-	public void merge(T entity) {
-		Session hibernateSession = this.getSession();
-		hibernateSession.merge(entity);
+	void beginTransaction() {
+		getSession().getTransaction().begin();
 	}
 
-	public void delete(T entity) {
-		Session hibernateSession = this.getSession();
-		hibernateSession.delete(entity);
+	void commitTransaction() {
+		getSession().getTransaction().commit();
 	}
 
-	@SuppressWarnings("unchecked")
-	public List<T> findMany(Query query) {
-		List<T> t;
-		t = (List<T>) query.list();
+	void closeSession() {
+		getSession().close();
+	}
+
+	void rollback() {
+		getSession().getTransaction().rollback();
+	}
+
+	@Override
+	public T findOne(PK pk) {
+		return (T) getSession().get(getType(), pk);
+	}
+
+	@Override
+	public List<T> findAll() {
+		return getSession().createQuery("FROM " + getType().getName()).list();
+	}
+
+	@Override
+	public Long count() {
+		return (Long) getSession().createQuery("select count(*) from " + getType().getName() + " o").list().get(0);
+	}
+
+	@Override
+	public T save(T t) {
+		getSession().saveOrUpdate(t);
 		return t;
 	}
 
-	@SuppressWarnings("unchecked")
-	public T findOne(Query query) {
-		T t;
-		t = (T) query.uniqueResult();
-		return t;
+	@Override
+	public void merge(T t) {
+		getSession().merge(t);
 	}
 
-	@SuppressWarnings("unchecked")
-	public T findByID(Class<T> clazz, BigDecimal id) {
-		Session hibernateSession = this.getSession();
-		T t = null;
-		t = (T) hibernateSession.get(clazz, id);
-		return t;
+	@Override
+	public void delete(T t) {
+		getSession().delete(t);
 	}
 
-	@SuppressWarnings("unchecked")
-	public List<T> findAll(Class<T> clazz) {
-		Session hibernateSession = this.getSession();
-		List<T> T = null;
-		Query query = hibernateSession.createQuery("from " + clazz.getName());
-		T = query.list();
-		return T;
+	@Override
+	public void delete(PK pk) {
+		getSession().createQuery("delete from " + getType().getName() + " where id = " + pk).executeUpdate();
 	}
-
 }
