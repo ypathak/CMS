@@ -9,9 +9,10 @@
         http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+        <mvc:annotation-driven></mvc:annotation-driven>
 	<context:component-scan base-package="com.commons.*" />
 	<mvc:resources mapping="/resources/**" location="/resources/"></mvc:resources>
-	<mvc:annotation-driven></mvc:annotation-driven>
+	
 	<!-- 
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
 			<property name="prefix"> 
@@ -40,4 +41,10 @@
 			</list>
 		</property>
 	</bean>
+	<bean id="messageSource"
+        class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+ 
+        <property name="basename" value="/WEB-INF/messages" />
+          <property name="cacheSeconds" value="3000" />
+    </bean>
 </beans>

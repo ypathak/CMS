@@ -1,39 +1,53 @@
 package com.commons.entity;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "User")
 public class User extends AbstractEntity {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue
 	@Column(name = "id")
 	private Long id;
 
+	@NotEmpty(message="Enter Firstname")
 	@Column(name = "firstname")
 	private String firstname;
 
+	@NotEmpty(message="Enter Lastname")
 	@Column(name = "lastname")
 	private String lastname;
 
+	@NotEmpty(message="Enter username")
 	@Column(name = "username", unique= true)
 	private String username;
 
+	@NotEmpty(message="Enter Email")
+	@Email
 	@Column(name = "email", unique= true)
 	private String email;
 
+	@NotEmpty(message="Enter Password")
 	@Column(name = "password")
 	private String password;
 
@@ -41,6 +55,10 @@ public class User extends AbstractEntity {
 	@JoinTable(name = "userroles", joinColumns = { @JoinColumn(name = "Userid") }, inverseJoinColumns = { @JoinColumn(name = "userrole_id") })
 	private Set<Role> roles;
 
+	@OneToMany(mappedBy="user",fetch=FetchType.LAZY)
+	private List<Client> client; 
+	
+	
 	public User() {
 	}
 
@@ -108,6 +126,14 @@ public class User extends AbstractEntity {
 
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
+	}
+
+	public List<Client> getClient() {
+		return client;
+	}
+
+	public void setClient(List<Client> client) {
+		this.client = client;
 	}
 
 }

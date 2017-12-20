@@ -30,12 +30,10 @@
 			<div class="row">
 				<div class="col-md-6">
 				
-				
-				hello admin
 					
-<%-- <div class="box box-primary">
+<div class="box box-primary">
 	<div class="box-header with-border">
-	  <h3 class="box-title">Register an User</h3>
+	  <h3 class="box-title">Register a Client</h3>
 	</div>
 	<!-- /.box-header -->
 	<div class="box-body">
@@ -86,7 +84,7 @@
 							</div>
 						</form:form>
 </div>
-</div> --%>
+</div>
 <!-- /.box -->
 		
 

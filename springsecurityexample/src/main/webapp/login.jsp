@@ -16,13 +16,13 @@
 	name="viewport">
 <!-- Bootstrap 3.3.7 -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/theme/bower_components/bootstrap/dist/css/bootstrap.min.css">
+	href="${pageContext.request.contextPath}/resources/theme/dist/css/bootstrap.min.css">
 <!-- Font Awesome -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/theme/bower_components/font-awesome/css/font-awesome.min.css">
+	href="${pageContext.request.contextPath}/resources/theme/dist/css/font-awesome.min.css">
 <!-- Ionicons -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/theme/bower_components/Ionicons/css/ionicons.min.css">
+	href="${pageContext.request.contextPath}/resources/theme/dist/css/ionicons.min.css">
 <!-- Theme style -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/theme/dist/css/AdminLTE.min.css">
@@ -111,10 +111,10 @@
 	</div>
 </body>
 <script
-	src="${pageContext.request.contextPath}/resources/theme/bower_components/jquery/dist/jquery.min.js"></script>
+	src="${pageContext.request.contextPath}/resources/theme/dist/js/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script
-	src="${pageContext.request.contextPath}/resources/theme/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	src="${pageContext.request.contextPath}/resources/theme/dist/js/bootstrap.min.js"></script>
 <!-- iCheck -->
 <script
 	src="${pageContext.request.contextPath}/resources/theme/plugins/iCheck/icheck.min.js"></script>
