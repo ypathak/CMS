@@ -38,35 +38,25 @@
 	<!-- /.box-header -->
 	<div class="box-body">
 	
-<form:form method="POST" modelAttribute="Empdata"
+<form:form method="POST" modelAttribute="clientdata"
 							action="${registerURL}">
 							<div class="form-group has-feedback">
 							    
-								<form:input class="form-control" placeholder="First name" type="text" path="firstname"/>
+								<form:input class="form-control" placeholder="Name" type="text" path="Clientname"/>
 								<span class="glyphicon glyphicon-user form-control-feedback"></span>
-								 <span><form:errors path="firstname" cssClass="error"/></span>
+								 <span><form:errors path="Clientname" cssClass="error"/></span>
 							</div>
 							<div class="form-group has-feedback">
-								<form:input class="form-control" placeholder="Last name" type="text" path="lastname"/>
+								<form:input class="form-control" placeholder="PAN Number" type="text" path="pannumber"/>
 								<span class="glyphicon glyphicon-user form-control-feedback"></span>
-								<span><form:errors path="lastname" cssClass="error" /></span>
+								<span><form:errors path="pannumber" cssClass="error" /></span>
 							</div>
 							<div class="form-group has-feedback">
-								<form:input class="form-control" placeholder="Email" type="email" path="email"/>
+								<form:input class="form-control" placeholder="Adhar Number" type="text" path="adharnumber"/>
 								<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-								 <span><form:errors path="email" cssClass="error" /></span>
+								 <span><form:errors path="adharnumber" cssClass="error" /></span>
 							</div>
-							<div class="form-group has-feedback">
-								<form:input class="form-control" placeholder="User name" type="text" path="username"/>
-								<span class="glyphicon glyphicon-user form-control-feedback"></span>
-								</span> <form:errors path="username" cssClass="error" /></span>
-							</div>
-							<div class="form-group has-feedback">
-								<form:input class="form-control" placeholder="Password"
-									type="password" path="password"/> 
-									<span class="glyphicon glyphicon-lock form-control-feedback"></span>
-									</span> <form:errors path="password" cssClass="error" /></span>
-							</div>
+						
 							
 							<div class="row">
 								<div class="col-xs-8">

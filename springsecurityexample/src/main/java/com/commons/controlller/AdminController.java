@@ -1,5 +1,6 @@
 package com.commons.controlller;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
@@ -41,6 +42,7 @@ public class AdminController implements ApplicationConstants{
 		try {
 			List<Role> roles=userService.fetchrole("EMPLOYEE");
 			user.setRoles(new HashSet<>(roles));
+		
 			userService.save(user);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

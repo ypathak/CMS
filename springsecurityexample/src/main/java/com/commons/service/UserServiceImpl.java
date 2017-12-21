@@ -1,5 +1,6 @@
 package com.commons.service;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -31,6 +32,8 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void save(User user) throws Exception {
 		user.setPassword(bcry.encode(user.getPassword()));
+		Date created_date=new Date();
+		user.setCreatedDate(created_date);
 		userDao.save(user);
 	}
 

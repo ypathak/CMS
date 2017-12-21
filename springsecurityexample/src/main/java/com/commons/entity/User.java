@@ -1,5 +1,6 @@
 package com.commons.entity;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -30,35 +31,37 @@ public class User extends AbstractEntity {
 	@Column(name = "id")
 	private Long id;
 
-	@NotEmpty(message="Enter Firstname")
+	@NotEmpty(message = "Enter Firstname")
 	@Column(name = "firstname")
 	private String firstname;
 
-	@NotEmpty(message="Enter Lastname")
+	@NotEmpty(message = "Enter Lastname")
 	@Column(name = "lastname")
 	private String lastname;
 
-	@NotEmpty(message="Enter username")
-	@Column(name = "username", unique= true)
+	@NotEmpty(message = "Enter username")
+	@Column(name = "username", unique = true)
 	private String username;
 
-	@NotEmpty(message="Enter Email")
+	@NotEmpty(message = "Enter Email")
 	@Email
-	@Column(name = "email", unique= true)
+	@Column(name = "email", unique = true)
 	private String email;
 
-	@NotEmpty(message="Enter Password")
+	@NotEmpty(message = "Enter Password")
 	@Column(name = "password")
 	private String password;
 
+	
+
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "userroles", joinColumns = { @JoinColumn(name = "Userid") }, inverseJoinColumns = { @JoinColumn(name = "userrole_id") })
+	@JoinTable(name = "userroles", joinColumns = { @JoinColumn(name = "Userid") }, inverseJoinColumns = {
+			@JoinColumn(name = "userrole_id") })
 	private Set<Role> roles;
 
-	@OneToMany(mappedBy="user",fetch=FetchType.LAZY)
-	private List<Client> client; 
-	
-	
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+	private List<Client> client;
+
 	public User() {
 	}
 
@@ -119,6 +122,8 @@ public class User extends AbstractEntity {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+
 
 	public Set<Role> getRoles() {
 		return roles;

@@ -18,7 +18,7 @@
 
 </head>
 <body>
-
+<sec:authentication property="principal.username" var="uname" />
 	<div class="content-wrapper">
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
@@ -67,7 +67,11 @@
 									<span class="glyphicon glyphicon-lock form-control-feedback"></span>
 									</span> <form:errors path="password" cssClass="error" /></span>
 							</div>
-							
+					       <div class="form-group has-feedback">
+								<form:input class="form-control" placeholder="createdBy" type="hidden" path="createdBy" value="${uname }"/>
+								<span class="glyphicon glyphicon-user form-control-feedback"></span>
+								
+							</div>
 							<div class="row">
 								<div class="col-xs-8">
 									<div class="checkbox icheck">
